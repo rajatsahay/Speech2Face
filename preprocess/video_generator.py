@@ -34,7 +34,8 @@ class VideoExtract():
         #self.out = self.vgg.get_layer('fc7').output
         self.vgg = load_model('/content/drive/My Drive/facenet_keras.h5')
         self.out = self.vgg.output
-        self.vgg_model = Model(self.vgg.input, self.out)
+        #self.vgg_model = Model(self.vgg.input, self.out)
+        self.vgg_model=load_model('/content/drive/My Drive/facenet_keras.h5')
         self.verbose = verbose
 
         if not os.path.isdir(self.destination_dir):
