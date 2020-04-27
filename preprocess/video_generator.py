@@ -13,6 +13,7 @@ from keras.engine import  Model
 from keras.layers import Input
 from keras_vggface.vggface import VGGFace
 from keras_vggface import utils
+from keras.models import load_model
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 FNULL = open(os.devnull, 'w')
@@ -29,8 +30,10 @@ class VideoExtract():
         self.fps = fps
         self.duration = duration
         self.face_extraction_model = face_extraction_model
-        self.vgg = VGGFace(model='vgg16')
-        self.out = self.vgg.get_layer('fc7').output
+        #self.vgg = VGGFace(model='vgg16')
+        #self.out = self.vgg.get_layer('fc7').output
+        self.vgg = load_model('/content/drive/My Drive/facenet_keras.h5')
+        self.out = self.vgg.output
         self.vgg_model = Model(self.vgg.input, self.out)
         self.verbose = verbose
 
